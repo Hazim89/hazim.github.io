@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<head>
+<style>
+  /* Reset default margin and padding */
+body,
+h1,
+ul,
+li,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Define grid layout */
+body {
+    display: grid;
+    color: white;
+    grid-template-areas:
+        "header header header"
+        "leftmenu content rightmenu"
+        "footer footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    min-height: 100vh;
+    padding-top: 10%;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+/* Header styling */
+header {
+    grid-area: header;
+    background-color: #121212;
+    color: white;
+    text-align: center;
+    padding: 10px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 5px;
+}
+
+nav {
+    grid-area: leftmenu;
+    background-color: #121212;
+    padding: 80px 20px 20px;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 15%;
+    height: 100vh;
+    box-sizing: border-box;
+
+    img{
+        max-width: 8%;
+        max-height: 8%;
+        }
+}
+
+nav {
+    z-index: 1000; /* Ensure the left menu appears above other elements */
+}
+
+
+.contact-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.contact-list li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+aside {
+    grid-area: rightmenu;
+    background-color: #121212;
+    padding: 80px 10px 20px;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 15%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Content styling */
+main {
+    grid-area: content;
+    margin-top: 1px;
+    padding: 5px 20px 20px; /* Changed padding values */
+    position: relative; /* Ensure positioning context */
+    z-index: 1; /* Set a higher z-index */
+}
+.black-box {
+    width: 1000px; /* Adjust the width to make the whole box wider */
+    background-color: black;
+    border: 2px solid red; /* Maintain the same border thickness */
+    padding: 20px; /* Maintain the same padding */
+    margin-top: 0; /* Ensure no margin at the top */
+    border-radius: 10px; /* Maintain the same border radius */
+    color: white;
+    height: 600px; /* Maintain the same height */
+    overflow-y: auto; /* Maintain the same overflow behavior */
+}
+
+
+.black-box::before {
+    content: '';
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    /* border: 2px solid #eb315a; Use the same red color as the background */
+    border-radius: 8px; /* Rounded corners */
+}
+
+
+.logo-container {
+    text-align: center;
+}
+
+.logo-inside {
+    width: 500px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 50%; /* Make the corners rounded */
+}
+
+.logo-text {
+    color: white;
+}
+
+/* Footer styling */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Additional styles from the provided CSS */
+/* Add these styles below your existing styles */
+
+/* Apply the font-family to the whole body */
+body {
+    font-family: system-ui;
+}
+
+body {
+    background: linear-gradient(135deg, #eb315a 50%, #080808 50%);
+    margin: 0;
+    padding: 100px;
+    position: relative;
+}
+
+
+/* Style for links without underline */
+.collapsible-menu{
+    background-color: #eb315a;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    position: relative;
+}
+.collapsible-menu li{
+    padding: 18px 10px;
+}
+a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: rgb(182, 74, 74);
+    text-decoration: none;
+}
+
+/* Collapsible menu styles */
+.collapsible {
+    background-color: #eb315a;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    position: relative;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #555;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #333333;
+}
+
+.info {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 5px solid #67192a;
+    border-radius: 10px;
+    text-align: left;
+
+    img{
+        max-width: 60%;
+        max-height: 60%;
+        }
+
+}
+
+.info h2 {
+    font-family: 'Yu Gothic', Arial, sans-serif;
+    font-weight: bolder;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.info h2 ul li {
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px;
+    color: white;
+}
+.info img {
+    display: block;
+    margin: 0 auto;
+}
+
+.info2{
+    border: none;
+}
+
+.contact-info {
+    margin-top: 0px; /* Add some space between each contact info */
+    padding: 0px; /* Add padding to the contact info */
+    background-color: #333333; /* Add background color to the contact info */
+    border-radius: 5px; /* Add rounded corners to the contact info */
+}
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.image-with-sentences {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.profile-pic {
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add spacing between the image and text */
+}
+
+</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <link rel="stylesheet" type="text/css" href="Hazim.css">
+</head>
+
+<body>
+    <header>
+        <img src="gb1.png" alt="Logo" class="logo">
+        <h1>Welcome to Gamma&Beta website</h1>
+    </header>
+    <aside>
+        <div class="collapsible-menu">
+            <li><a href="#info1">About Hazim</a></li>
+            <li><a href="#hazim-interests">Hazim's Interests</a></li>
+    </aside>
+
+    <nav>
+        <div class="collapsible-menu">
+            <button class="collapsible">Contact Hazim</button>
+            <div class="content">
+                <p class="contact-info">
+                    <ul class="contact-list">
+                    <li><img src="logo email.png"> ahmadhazim@graduate.utm.my</li>
+                    <li><img src="phone-logo.png"> Phone: 0193839091 </li>
+                    <li><img src="linkedin logo.png"> LinkedIn: <a href="https://www.linkedin.com/in/ahmad-hazim-b339b2265/" target="_blank">LinkedIn Profile</a> </li> 
+                    </ul>
+                    
+                </p>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <main>
+            <div class="black-box">
+                <div class="logo-container">
+                    <img src="gb1.png" alt="Logo" class="logo-inside">
+                    <p class="logo-text">We are a dynamic group of students from the University of Technology Malaysia (UTM), pursuing degrees in Computer Science with a specialization in Network and Security. Our group members are Affif, Hazim and Faizad. Together, we form the Gamma&Beta team, ready to tackle exciting projects and contribute to the ever-evolving world of technology. Stay tuned for updates, articles, and insights from our journey! Our mission as  is to commit to pushing boundaries, learning, and collaborating. Our mission is to bridge the gap between theory and practice, applying our knowledge to real-world scenarios. From securing networks to developing robust applications, we’re on a quest to make a meaningful impact.
+                    </p>
+                </div>
+                <!-- Content goes here -->
+                
+            </div>       
+    </main>
+
+        <div class="info">
+            <img id="info1" src="Hazim.png" alt="Placeholder Image">
+            <h2>Personal Information</h2>
+            <ul>
+                <li><strong>Name:</strong> Ahmad Hazim Bin Ahmad Najmi</li>
+                <li><strong>AKA:</strong> Ajim</li>
+                <li><strong>Age:</strong> 21</li>
+                <li><strong>Education:</strong> University Technology of Malaysia, Network & Cyber Security</li>
+                <li><strong>Relationship Status:</strong> Single</li>
+                <li><strong>Interests:</strong> Coding, Cars, music and sports</li>
+            </ul>
+        </div>
+
+        <div class="info">
+            <h2>About me</h2>
+            <ul>
+                <li>
+                    I'm Ahmad Hazim Bin Ahmad Najmi, also known as Ajim, a 21-year-old student at the University Technology of Malaysia, specializing in Network & Cyber Security. With a passion for coding, cars, music, and sports, he navigates the world with curiosity and enthusiasm. Whether delving into the intricacies of cybersecurity or exploring the latest automotive technologies, Ahmad Hazim is driven by a desire to learn and make meaningful contributions to his fields of interest.
+                </li>
+            </ul>
+        </div>
+        <div class="image-with-sentences" id="hazim-interests">
+            <img src="coding.png" > <p>
+                I find joy in the realm of coding. Proficient in languages like C++, Java, HTML, and with a growing proficiency in Python, he thrives on the intricacies of programming. Whether crafting elegant algorithms in C++, building dynamic web pages with HTML, or exploring the versatility of Python, Ahmad Hazim is continually expanding his coding horizons. His passion for coding extends beyond mere syntax; it embodies a quest for innovation, problem-solving, and the boundless possibilities of technology.
+            </p>
+            
+        </div>
+
+        <div class="info2">
+        </div>
+        <div class="image-with-sentences">
+            I have a passion for cars, with a particular fondness for the Porsche 911 GT3 RS. The sleek design, powerful engine, and precision engineering of the GT3 RS captivate me. Whether it's admiring its aerodynamic curves or experiencing its exhilarating performance on the road, the Porsche 911 GT3 RS embodies the epitome of automotive excellence for me. Exploring the world of cars, from classic models to cutting-edge innovations, fuels my enthusiasm for the automotive industry.
+  <p> <img src="porsche.png" >            
+            </p>
+            
+        </div>
+        <div class="image-with-sentences">
+            <img src="abel.png" > <p>
+                I find solace and inspiration in the world of music. With a diverse taste spanning various genres, he immerses himself in melodies that resonate with his soul. Among his favorite artists stands The Weeknd, whose emotive voice and captivating lyrics have left an indelible mark on his musical journey. From soulful ballads to electrifying beats, Ahmad Hazim embraces the power of music to evoke emotions, spark creativity, and accompany him on life's myriad adventures.
+
+
+
+
+
+
+
+            </p>
+            
+        </div>
+        
+        <br><br>
+    </main>
+</body>
+
+<footer>
+    <p>&copy; 2024 Hazim</p>
+</footer>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.style.width = null;
+                content.style.padding = null;
+                this.style.width = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.width = content.scrollWidth + "px";
+                content.style.padding = "20px"; // Adjust the padding as needed
+                this.style.width = content.scrollWidth + "px";
+            }
+        });
+    }
+</script>
